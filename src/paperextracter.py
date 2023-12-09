@@ -1,4 +1,5 @@
 import pdfplumber as ppl
+import fitz
 
 # page_center是一个经验值，即pdf文档页面中间的x坐标，用于把字符分成左右两部分
 def extract_paper(filename, page_center=290):
@@ -66,3 +67,14 @@ def extract_paper(filename, page_center=290):
         paras.extend(txt)
 
     return "".join(paras)
+
+def extract_content(pdf_file):
+    pdf_document = fitz.open(pdf_file)
+    # 获取总页数
+    total_pages = pdf_document.page_count
+    # 提取整个文档的文本
+    full_text = ""
+    for page_num in range(total_pages):
+        page = pdf_document.load_page(page_num)
+        full_text += page.get_text("text")
+    return full_text
