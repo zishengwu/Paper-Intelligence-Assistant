@@ -1,3 +1,5 @@
+# [查看中文](https://github.com/zishengwu/Paper-Intelligence-Assistant/blob/main/README_cn.md)
+
 # Introduction
 💬 Paper Intelligence Assistant is a PDF paper reading assistant based on large models, which can help users quickly read papers, extract viewpoints, summarize abstracts, and more.
 
