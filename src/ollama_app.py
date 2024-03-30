@@ -34,8 +34,8 @@ def start_ask(instruction, chat_history, content, model):
     chat_history.append((instruction, " "))
     
     # 模型最长支持32k的窗口，因此这里做了截断
-    if len(content)>8000:
-        content = content[:6000]
+    if len(content)>32000:
+        content = content[:32000]
         
     
     stream = ollama.chat(
@@ -43,9 +43,7 @@ def start_ask(instruction, chat_history, content, model):
         messages=[{'role': 'user', 'content': f"已知论文:{content}\n请根据论文内容来回答问题:{instruction}\n"}],
         stream=True,
     )
-    
-    print(f"已知论文:{content}\n请回答问题:{instruction}\n")
-    
+
     response = ""
     for chunk in stream:
         tmp = chunk['message']['content']
